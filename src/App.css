@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+body{
+  background-color:#ebebeb;
+  font-family: 'Open Sans', sans-serif;
+}
+
+header{
+  background-color:#FFF;
+}
+
+header > .grid-container{
+  grid-template-columns: 178px 540px auto;
+}
+
+.wrapper{
+  width: 865px;
+  margin: auto;
+  display: grid;
+}
+.logo{
+  justify-content: flex-start;
+  border-right: solid 1px #ebebeb;
+  padding: 11px 0;
+}
+
+.phone{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.phone li:first-child{
+  padding-left:26px;
+  padding-right: 8px;
+}
+
+.logo figure img{
+  height: 30px;
+}
+
+.userMenu{
+  display: flex;
+  text-align: center;
+  border: solid 1px #ebebeb;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.userMenu figcaption{
+  font-size: 13px;
+  margin-top:5px;
+}
+
+.phone figure img,
+.userMenu img{
+  width: 22px;
+}
+
+#listing{
+  margin-top:31px;
+}
+
+#listing.grid-container{
+  grid-gap: 22px;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fit, 273px);
+}
+
+.flexCar{
+  border-radius: 5px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.flexCar figure{
+  height: 172px;
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.flexCar figure figcaption{
+  background-color: rgba(0, 0, 0, .4);
+  bottom:0;
+  position: absolute;
+  color:#FFF;
+  text-align: center;
+  width: 100%;
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.flexCar figure img{
+  width:  100%;
+}
+
+.flexCar .innerInfo{
+  background-color: #FFF;
+  padding:8px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+}
+
+.flexCar .innerInfo .topInfo,
+.flexCar .innerInfo .bottomInfo{
+  display: grid;
+  grid-template-columns: 50% auto;
+  align-items: center;
+  border-bottom: solid 2px #ebebeb;
+  padding-bottom: 10px;
+}
+
+.flexCar .innerInfo .topInfo li:first-child,
+.flexCar .innerInfo .bottomInfo li:first-child{
+  border-right: solid 2px #ebebeb;
+}
+.flexCar .innerInfo .bottomInfo{
+  padding-top: 6px;
+  padding-bottom: 6px !important;
+}
+.flexCar .innerInfo .bottomInfo li{
+  padding: 5px 0;
+}
+
+.flexCar .innerInfo .topInfo .label{
+  display: block;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+.flexCar .innerInfo .topInfo time{
+  color:#ff6d4a;
+  font-size: 22px;
+  font-weight: 700;
+}
+.flexCar .innerInfo .topInfo .oferta{
+  color:#3eb871;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.flexCar .innerInfo .carDetails{
+  padding: 12px 0;
+  border-bottom: solid 1px #ebebeb;
+}
+.flexCar .innerInfo .carDetails p{
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.flexCar .innerInfo .button{
+  width: 100%;
+  border-radius: 5px;
+  background-color:#3eb871;
+  color:#FFF;
+  text-transform: uppercase;
+  border:none;
+  text-align: center;
+  padding: 9px;
+}

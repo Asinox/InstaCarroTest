@@ -1,0 +1,10 @@
+/* Large screens */
+@media (min-width: 48em) {
+    .row-cols-2 > .cell,
+    .row-cols-3 > .cell,
+    .row-cols-4 > .cell,
+    .row-cols-6 > .cell,
+    .row-cols-12 > .cell{
+      flex: 1;  
+    }
+}
