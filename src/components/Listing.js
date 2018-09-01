@@ -8,20 +8,18 @@ export default class Listing extends Component{
         this.state = { cars:[] };
     }
 
-    currentBid(bid = 0){
-        //console.log(bid.slice(-1)[0].amount);
-        
+    currentBid(bid){
+        console.log(bid);
 
-        
-
-        
-        // if(bid){
-        //     //return bid.slice(-1)[0].amount;
-        //     console.log(bid.slice(-1))
-        // }else{
-        //     return 0;
-        // }
-        
+        if(!Array.isArray(bid) || !bid.length){
+            return 0 ;
+        }else{
+            let amount = bid[bid.length - 1].amount;
+            if(amount){
+                return amount;
+            }
+           
+        }
     }
 
     componentDidMount(){
@@ -37,7 +35,7 @@ export default class Listing extends Component{
                     return(
                         <div className="flexCar" key={car.id} data-order={car.remainingTime}>
                             <figure>
-                                <img src={car.imageUrl} title={car.make}/>
+                                <img src={car.imageUrl} title={car.make} alt={car.mark}/>
                                 <figcaption>ver detalhes</figcaption>
                             </figure>
                             <div className="innerInfo">
@@ -48,7 +46,7 @@ export default class Listing extends Component{
                                     </li>
                                     <li>
                                         <span className="label">ultima oferta</span>
-                    <span className="oferta">R$ {this.currentBid(car.bids)}</span>
+                                        <span className="oferta">R$ {this.currentBid(car.bids)}</span>
                                     </li>
                                 </ul>
                                 <div className="carDetails">
