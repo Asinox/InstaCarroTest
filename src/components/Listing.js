@@ -29,10 +29,13 @@ export default class Listing extends Component{
         .then(results => {
                 return results.json();
             }).then(data => {
+
+                data.sort((a,b) => a.remainingTime - b.remainingTime);
+
                 let cars = data.map((car, i) => {
-                    //console.log(car.bids.slice(-1)[0].amount)
+
                     return(
-                        <div className="flexCar" key={car.id}>
+                        <div className="flexCar" key={car.id} data-order={car.remainingTime}>
                             <figure>
                                 <img src={car.imageUrl} title={car.make}/>
                                 <figcaption>ver detalhes</figcaption>
@@ -41,9 +44,7 @@ export default class Listing extends Component{
                                 <ul className="topInfo">
                                     <li>
                                         <span className="label">tempo restante</span>
-                                        <time>
-                                            {car.remainingTime}
-                                        </time>
+                                        <Moment interval={100} format="HH:mm:ss">{car.remainingTime}</Moment>
                                     </li>
                                     <li>
                                         <span className="label">ultima oferta</span>
