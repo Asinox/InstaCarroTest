@@ -24,6 +24,18 @@ export default class Listing extends Component{
         return k.toFixed(1);
     }
 
+    stripCharacters(str) {
+        str = str.replace('R$','');
+        str = str.replace(',','');
+        return str.trim();
+    }
+
+    addBid(id){
+        let parent = document.getElementById("car-"+id).getElementsByClassName("oferta");
+        let amount = parseFloat(this.stripCharacters(parent[0].innerText));
+        parent[0].innerText = "".concat("R$ ",parseFloat(amount + 250));
+    }
+
     componentDidMount(){
         fetch('https://s3-sa-east-1.amazonaws.com/config.instacarro.com/recruitment/auctions.json')
         .then(results => {
@@ -35,7 +47,7 @@ export default class Listing extends Component{
                 let cars = data.map((car, i) => {
                 
                     return(
-                        <div className="flexCar" key={car.id} data-order={car.remainingTime}>
+                        <div className="flexCar" key={car.id} data-order={car.remainingTime} id={"car-"+car.remainingTime}>
                             <figure>
                                 <img src={car.imageUrl} title={car.make} alt={car.mark}/>
                                 <figcaption>ver detalhes</figcaption>
@@ -44,11 +56,8 @@ export default class Listing extends Component{
                                 <ul className="topInfo">
                                     <li><span className="label">tempo restante</span></li>
                                     <li><span className="label">ultima oferta</span></li>
+                                    <li><time><Timer backward={true} stopHours={0} minutes={Math.ceil(car.remainingTime / (1000 * 60))}/></time></li>
                                     <li>
-                                        <time><Timer backward={true} stopHours={0} minutes={Math.ceil(car.remainingTime / (1000 * 60))}/></time>
-                                    </li>
-                                    <li>
-                                        
                                         <span className="oferta">
                                             {new Intl.NumberFormat('pt-BR', { 
                                                 style: 'currency', 
@@ -66,7 +75,7 @@ export default class Listing extends Component{
                                     <li>{this.formatKm(car.km)} KM</li>
                                 </ul>
                                 <div className="buttomInfo">
-                                    <button className="button">fazer oferta</button>
+                                    <button className="button" onClick={this.addBid.bind(this,car.remainingTime)}>fazer oferta</button>
                                 </div>
                             </div>
                         </div>
@@ -75,22 +84,6 @@ export default class Listing extends Component{
                 this.setState({cars: cars});
             })
     }
-
-
-    // countdown() {
-    //     this.setState(prevState => ({
-    //       time: prevState.time - 1
-    //     }));
-    // }
-
-    // componentDidMount() {
-    //     this.interval = setInterval(() => this.countdown(), 1000);
-    // }
-
-    // componentWillUnmount() {
-    //     clearInterval(this.interval);
-    // }
-
 
     render(){
         return(

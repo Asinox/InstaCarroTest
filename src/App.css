@@ -179,3 +179,4 @@ header > .grid-container{
 button:hover{
   cursor: pointer;
 }
+button:focus {outline:0;}
