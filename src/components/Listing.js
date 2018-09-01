@@ -9,8 +9,6 @@ export default class Listing extends Component{
     }
 
     currentBid(bid){
-        console.log(bid);
-
         if(!Array.isArray(bid) || !bid.length){
             return 0 ;
         }else{
@@ -18,7 +16,6 @@ export default class Listing extends Component{
             if(amount){
                 return amount;
             }
-           
         }
     }
 
@@ -46,7 +43,13 @@ export default class Listing extends Component{
                                     </li>
                                     <li>
                                         <span className="label">ultima oferta</span>
-                                        <span className="oferta">R$ {this.currentBid(car.bids)}</span>
+                                        <span className="oferta">
+                                            {new Intl.NumberFormat('pt-BR', { 
+                                                style: 'currency', 
+                                                currency: 'BRL' ,
+                                                minimumFractionDigits: 0
+                                            }).format(this.currentBid(car.bids))}
+                                        </span>
                                     </li>
                                 </ul>
                                 <div className="carDetails">
@@ -65,9 +68,6 @@ export default class Listing extends Component{
             })
     }
 
-    millisecondsToHours(ms){
-        return Math.round((ms / 1000 / 60 / 60) * 100) / 100;
-    }
 
     // countdown() {
     //     this.setState(prevState => ({
