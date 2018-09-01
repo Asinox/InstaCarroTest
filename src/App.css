@@ -175,3 +175,7 @@ header > .grid-container{
   padding: 9px;
   flex-grow: 1;
 }
+
+button:hover{
+  cursor: pointer;
+}

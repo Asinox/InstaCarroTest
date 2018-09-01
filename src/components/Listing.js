@@ -45,7 +45,7 @@ export default class Listing extends Component{
                                     <li><span className="label">tempo restante</span></li>
                                     <li><span className="label">ultima oferta</span></li>
                                     <li>
-                                        <time><Timer backward={true} minutes={Math.ceil(car.remainingTime / (1000 * 60))}/></time>
+                                        <time><Timer backward={true} stopHours={0} minutes={Math.ceil(car.remainingTime / (1000 * 60))}/></time>
                                     </li>
                                     <li>
                                         
