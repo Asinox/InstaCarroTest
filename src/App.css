@@ -120,7 +120,7 @@ header > .grid-container{
   padding-bottom: 10px;
 }
 
-.flexCar .innerInfo .topInfo li:first-child,
+.flexCar .innerInfo .topInfo li:nth-child(3),
 .flexCar .innerInfo .bottomInfo li:first-child{
   border-right: solid 2px #ebebeb;
 }
@@ -130,6 +130,7 @@ header > .grid-container{
 }
 .flexCar .innerInfo .bottomInfo li{
   padding: 5px 0;
+  font-size: 13px;
 }
 
 .flexCar .innerInfo .topInfo .label{
@@ -156,10 +157,15 @@ header > .grid-container{
 .flexCar .innerInfo .carDetails p{
   text-transform: uppercase;
   font-weight: 700;
+  font-size: 13px;
+}
+
+.flexCar .innerInfo .buttomInfo{
+  display: flex;
+  padding-top: 10px;
 }
 
 .flexCar .innerInfo .button{
-  width: 100%;
   border-radius: 5px;
   background-color:#3eb871;
   color:#FFF;
@@ -167,4 +173,5 @@ header > .grid-container{
   border:none;
   text-align: center;
   padding: 9px;
+  flex-grow: 1;
 }

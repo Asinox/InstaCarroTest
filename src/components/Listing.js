@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Moment from 'react-moment';
+//import Moment from 'react-moment';
+import  Timer from "react-time-counter"
 
 export default class Listing extends Component{
     
@@ -19,6 +20,30 @@ export default class Listing extends Component{
         }
     }
 
+    formatKm(km){
+        let k = km / 1000;
+        return k.toFixed(1);
+    }
+
+    displayTime(millisec) {
+        var seconds = (millisec / 1000).toFixed(0);
+        var minutes = Math.floor(seconds / 60);
+        var hours = "";
+        if (minutes > 59) {
+            hours = Math.floor(minutes / 60);
+            hours = (hours >= 10) ? hours : "0" + hours;
+            minutes = minutes - (hours * 60);
+            minutes = (minutes >= 10) ? minutes : "0" + minutes;
+        }
+
+        seconds = Math.floor(seconds % 60);
+        seconds = (seconds >= 10) ? seconds : "0" + seconds;
+        if (hours !== "") {
+            return hours + ":" + minutes + ":" + seconds;
+        }
+        return minutes + ":" + seconds;
+    }
+
     componentDidMount(){
         fetch('https://s3-sa-east-1.amazonaws.com/config.instacarro.com/recruitment/auctions.json')
         .then(results => {
@@ -28,7 +53,7 @@ export default class Listing extends Component{
                 data.sort((a,b) => a.remainingTime - b.remainingTime);
 
                 let cars = data.map((car, i) => {
-
+                
                     return(
                         <div className="flexCar" key={car.id} data-order={car.remainingTime}>
                             <figure>
@@ -37,12 +62,13 @@ export default class Listing extends Component{
                             </figure>
                             <div className="innerInfo">
                                 <ul className="topInfo">
+                                    <li><span className="label">tempo restante</span></li>
+                                    <li><span className="label">ultima oferta</span></li>
                                     <li>
-                                        <span className="label">tempo restante</span>
-                                        <Moment interval={100} format="HH:mm:ss">{car.remainingTime}</Moment>
+                                        <time><Timer backward={true} minutes={Math.ceil(car.remainingTime / (1000 * 60))}/></time>
                                     </li>
                                     <li>
-                                        <span className="label">ultima oferta</span>
+                                        
                                         <span className="oferta">
                                             {new Intl.NumberFormat('pt-BR', { 
                                                 style: 'currency', 
@@ -57,9 +83,11 @@ export default class Listing extends Component{
                                 </div>
                                 <ul className="bottomInfo">
                                     <li>{car.year}</li>
-                                    <li>{car.km % 1000} KM</li>
+                                    <li>{this.formatKm(car.km)} KM</li>
                                 </ul>
-                                <button className="button">fazer oferta</button>
+                                <div className="buttomInfo">
+                                    <button className="button">fazer oferta</button>
+                                </div>
                             </div>
                         </div>
                     )
