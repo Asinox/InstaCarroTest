@@ -5,6 +5,10 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
+main{
+  padding-bottom: 100px;
+}
+
 header{
   background-color:#FFF;
 }
