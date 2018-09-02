@@ -26,14 +26,14 @@ export default class Listing extends Component{
 
     stripCharacters(str) {
         str = str.replace('R$','');
-        str = str.replace(',','');
+        str = str.replace('.','');
         return str.trim();
     }
 
-    addBid(id){
-        let parent = document.getElementById("car-"+id).getElementsByClassName("oferta");
-        let amount = parseFloat(this.stripCharacters(parent[0].innerText));
-        parent[0].innerText = "".concat("R$ ",parseFloat(amount + 250));
+    addBid(e){
+        const el = e.target.parentNode.parentNode.querySelector(".oferta");
+        var amount =  parseFloat(this.stripCharacters(el.innerText));
+        el.innerText = "R$ "+Number(amount+250).toLocaleString('pt-BR');
     }
 
     componentDidMount(){
@@ -47,7 +47,7 @@ export default class Listing extends Component{
                 let cars = data.map((car, i) => {
                 
                     return(
-                        <div className="flexCar" key={car.id} data-order={car.remainingTime} id={"car-"+car.remainingTime}>
+                        <div className="flexCar" key={car.id} data-order={car.remainingTime} id={"car-"+car.id}>
                             <figure>
                                 <img src={car.imageUrl} title={car.make} alt={car.mark}/>
                                 <figcaption>ver detalhes</figcaption>
@@ -75,7 +75,7 @@ export default class Listing extends Component{
                                     <li>{this.formatKm(car.km)} KM</li>
                                 </ul>
                                 <div className="buttomInfo">
-                                    <button className="button" onClick={this.addBid.bind(this,car.remainingTime)}>fazer oferta</button>
+                                    <button className="button" onClick={this.addBid.bind(this)}>fazer oferta</button>
                                 </div>
                             </div>
                         </div>
